@@ -7,11 +7,7 @@ export default function composeRefs<T>(...refs: [OptionalRef<T>, OptionalRef<T>,
     return composeTwoRefs(refs[0], refs[1]) || null
   }
 
-  const composedRef = refs.slice(1).reduce(
-    (semiCombinedRef: OptionalRef<T>, refToInclude: OptionalRef<T>) => composeTwoRefs(semiCombinedRef, refToInclude),
-    refs[0],
-  )
-  return composedRef || null
+  return refs.reduce<OptionalRef<T>>(composeTwoRefs, null)
 }
 
 type NonNullRef<T> = NonNullable<Ref<T>>
