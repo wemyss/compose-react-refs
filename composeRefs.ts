@@ -2,7 +2,7 @@ import {MutableRefObject, Ref} from 'react'
 
 type OptionalRef<T> = Ref<T> | undefined
 
-export default function composeRefs<T>(...refs: OptionalRef<T>[]): Ref<T> {
+export default function composeRefs<T>(...refs: Array<OptionalRef<T>>): Ref<T> {
   if (refs.length <= 2) { // micro-optimize the hot path
     return composeTwoRefs(refs[0], refs[1])
   }
